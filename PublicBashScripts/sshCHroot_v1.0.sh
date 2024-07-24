@@ -87,9 +87,9 @@ while read dep ; do cp "${dep}" "${tHiSjAiL}/lib/x86_64-linux-gnu/" 2>/dev/null 
 
 cp -r /usr/share/terminfo "${tHiSjAiL}/usr/share/"
 
-cat /etc/passwd |grep "${uSeRnAmE}" > "${tHiSjAiL}/etc/passwd"
-cat /etc/group  |grep "${uSeRnAmE}" > "${tHiSjAiL}/etc/group"
-cat /etc/shadow |grep "${uSeRnAmE}" > "${tHiSjAiL}/etc/shadow"
+cat /etc/passwd |grep -w "${uSeRnAmE}" > "${tHiSjAiL}/etc/passwd"
+cat /etc/group  |grep -w "${uSeRnAmE}" > "${tHiSjAiL}/etc/group"
+cat /etc/shadow |grep -w "${uSeRnAmE}" > "${tHiSjAiL}/etc/shadow"
 
 
 cat <<EOF > "${tHiSjAiL}/etc/hosts"
@@ -157,7 +157,7 @@ service sshd reload
 [[ $(id -u) == "0"  ]] || panic_err "This Script needs root privileges" "TESTS-001" "2"
 
 #Test for user error
-[[ -z "${uSeRnAmE}"  ]] && panic_err "Usage: ./JAIL_CONTROL.sh *Username* add|delete || Ex: ./JAIL_CONTROL.sh rsanchez add" "TESTS-002" "2"
+[[ -z "${uSeRnAmE}"  ]] && panic_err "Usage: ./${0##*/} *Username* add|delete || Ex: ./${0##*/} rsanchez add" "TESTS-002" "2"
 
 #Test No whitespaces
 [[ "${uSeRnAmE}" =~ \  ]] && panic_err "User name contains whitespaces" "TESTS-003" "2"
