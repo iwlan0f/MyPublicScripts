@@ -11,7 +11,7 @@ void loop() {
     String data = Serial.readStringUntil('\n');
     int commaIndex = data.indexOf(',');
 	
-	String triggerNumberStr = data.substring(0, commaIndex);
+    String triggerNumberStr = data.substring(0, commaIndex);
     String INDelaymsStr = data.substring(commaIndex + 1);
   
     int triggerNumber = triggerNumberStr.toInt();
